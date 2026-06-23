@@ -13,7 +13,7 @@ import yalter.mousetweaks.api.IMTModGuiContainer2;
 import yalter.mousetweaks.api.IMTModGuiContainer2Ex;
 import yalter.mousetweaks.impl.*;
 import yalter.mousetweaks.handlers.*;
-import yalter.mousetweaks.reflect.Reflection;
+import yalter.mousetweaks.impl.mixin.AccessGuiContainer;
 import yalter.mousetweaks.util.MTLog;
 
 import java.util.List;
@@ -38,7 +38,9 @@ public class Main {
             return true;
         initialized = true;
 
-        Reflection.reflectGuiContainer();
+        if (!AccessGuiContainer.class.isAssignableFrom(GuiContainer.class)) {
+            MTLog.logger.fatal("Unable to find injected mixin for GuiContainer class");
+        }
 
         MTLog.logger.debug("Mouse Tweaks has been initialized.");
 
