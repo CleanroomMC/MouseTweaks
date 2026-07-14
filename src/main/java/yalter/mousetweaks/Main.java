@@ -87,7 +87,7 @@ public class Main {
                 disableForThisContainer = handler.isMouseTweaksDisabled();
                 disableWheelForThisContainer = handler.isWheelTweakDisabled();
 
-                if (MTConfig.wheelTweak && !disableWheelForThisContainer && MTConfig.wheelTweakRequirement.check()) Mouse.getDWheel(); // reset the mouse wheel delta
+                if (MTConfig.wheelTweak && !disableWheelForThisContainer && MTConfig.wheelShiftRequirement.check()) Mouse.getDWheel(); // reset the mouse wheel delta
 
                 MTLog.logger.debug("Handler: "
                         + handler.getClass().getSimpleName()
@@ -205,7 +205,7 @@ public class Main {
     }
 
     private static void handleWheel(Slot selectedSlot) {
-        if (!MTConfig.wheelTweak || disableWheelForThisContainer || !MTConfig.wheelTweakRequirement.check())
+        if (!MTConfig.wheelTweak || disableWheelForThisContainer || !MTConfig.wheelShiftRequirement.check())
             return;
         int wheel = mouseState.consumeScrollAmount();
 

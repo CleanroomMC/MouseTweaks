@@ -24,8 +24,8 @@ public class MTConfig {
     public static boolean wheelTweak = true;
 
     @Config.Comment("Additional key requirement for Wheel tweak to activate. None = no requirement, Shift = must holding shift, No Shift = must not holding shift.")
-    @Config.Name("Wheel tweak requirement")
-    public static WheelTweakRequirement wheelTweakRequirement = WheelTweakRequirement.NONE;
+    @Config.Name("Wheel tweak shift requirement")
+    public static WheelShiftRequirement wheelShiftRequirement = WheelShiftRequirement.NONE;
 
     @Config.Comment("How to pick the source slot when pulling items via scrolling.")
     @Config.Name("Wheel tweak search order")
@@ -179,7 +179,7 @@ public class MTConfig {
         }
     }
 
-    public enum WheelTweakRequirement {
+    public enum WheelShiftRequirement {
         NONE,
         SHIFT,
         NO_SHIFT;
