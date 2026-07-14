@@ -40,7 +40,7 @@ public class Main {
 
         Reflection.reflectGuiContainer();
 
-        MTLog.logger.fatal("Mouse Tweaks has been initialized.");
+        MTLog.logger.debug("Mouse Tweaks has been initialized.");
 
         return true;
     }
