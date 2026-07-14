@@ -1,6 +1,7 @@
 package yalter.mousetweaks;
 
 import net.minecraftforge.common.config.Config;
+import org.lwjgl.input.Keyboard;
 import yalter.mousetweaks.util.Constants;
 
 @Config(modid = Constants.MOD_ID)
@@ -21,6 +22,10 @@ public class MTConfig {
     @Config.Comment("Scroll over items to move them between inventories.")
     @Config.Name("Wheel tweak")
     public static boolean wheelTweak = true;
+
+    @Config.Comment("Additional key requirement for Wheel tweak to activate. None = no requirement, Shift = must holding shift, No Shift = must not holding shift.")
+    @Config.Name("Wheel tweak shift requirement")
+    public static WheelShiftRequirement wheelShiftRequirement = WheelShiftRequirement.NONE;
 
     @Config.Comment("How to pick the source slot when pulling items via scrolling.")
     @Config.Name("Wheel tweak search order")
@@ -171,6 +176,20 @@ public class MTConfig {
         @Override
         public String toString() {
             return this.getValue();
+        }
+    }
+
+    public enum WheelShiftRequirement {
+        NONE,
+        SHIFT,
+        NO_SHIFT;
+
+        public boolean check() {
+            return switch (this) {
+                case NONE -> true;
+                case SHIFT -> Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
+                case NO_SHIFT -> !Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) && !Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
+            };
         }
     }
 }
