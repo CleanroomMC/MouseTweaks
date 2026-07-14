@@ -251,7 +251,11 @@ public class Main {
             return;
         }
 
+        int attemptsLeft = 100;
+
         do {
+            attemptsLeft--;
+
             Slot applicableSlot = findWheelApplicableSlot(slots, selectedSlot, pushItems);
             if (applicableSlot == null)
                 break;
@@ -320,7 +324,7 @@ public class Main {
                         handler.clickSlot(slotFrom, MouseButton.LEFT, false);
                 }
             }
-        } while (numItemsToMove > 0);
+        } while (numItemsToMove > 0 && attemptsLeft > 0);
     }
 
     // Returns true if the other inventory is above the selected slot inventory.
