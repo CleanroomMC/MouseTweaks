@@ -27,7 +27,8 @@ import java.util.Set;
 @Mod(   modid = Constants.MOD_ID, // If this isn't here, the mod doesn't load.
         version = Constants.VERSION, // If this isn't here, FML complains in the log.
         useMetadata = true, // The rest of stuff is fine being exclusively in mcmod.info.
-        clientSideOnly = true)
+        clientSideOnly = true,
+        dependencies = "required:mixinbooter@[11.0,)")
 public class MouseTweaks {
 
     @Mod.Instance

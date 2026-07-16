@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
+@Deprecated
 public class ReflectionCache {
 
     private final HashMap<String, Method> methods = new HashMap<>();
