@@ -405,25 +405,16 @@ configurations {
 
 dependencies {
     if (usesMixins.toBoolean() || forceEnableMixins.toBoolean()) {
-        implementation 'zone.rong:mixinbooter:8.3'
-        String mixin = 'zone.rong:mixinbooter:8.3'
+        final mixin = 'zone.rong:mixinbooter:11.5'
+
+        implementation(mixin) {
+            transitive = false
+        }
+        annotationProcessor(mixin)
+
         if (usesMixins.toBoolean()) {
-            mixin = modUtils.enableMixins(mixin, "mixins.${modId}.refmap.json")
+            modUtils.enableMixins(mixin, "mixins.${modId}.refmap.json")
         }
-
-        api (mixin) {
-            transitive = false
-        }
-
-        annotationProcessor(mixin) {
-            transitive = false
-        }
-
-        annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
-        // should use 24.1.1 but 30.0+ has a vulnerability fix
-        annotationProcessor 'com.google.guava:guava:30.0-jre'
-        // should use 2.8.6 but 2.8.9+ has a vulnerability fix
-        annotationProcessor 'com.google.code.gson:gson:2.8.9'
     }
 
     if (enableJUnit.toBoolean()) {
@@ -680,6 +671,7 @@ def getManifestAttributes() {
     }
 
     if (usesMixins.toBoolean()) {
+        attributes['MixinConfigs'] = "mixins.${modId}.json"
         attributes['ForceLoadAsMod'] = !containsMixinsAndOrCoreModOnly.toBoolean()
     }
     return attributes
