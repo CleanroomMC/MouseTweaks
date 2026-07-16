@@ -660,19 +660,23 @@ if (usesShadowedDependencies.toBoolean()) {
 
 def getManifestAttributes() {
     def attributes = [:]
+
     if (coreModClass) {
         attributes['FMLCorePlugin'] = "${modGroup}.${coreModClass}"
+        if (!containsMixinsAndOrCoreModOnly.toBoolean() && (usesMixins.toBoolean() || coreModClass)) {
+            attributes['FMLCorePluginContainsFMLMod'] = true
+        }
+        if (usesMixins.toBoolean()) {
+            attributes['ForceLoadAsMod'] = !containsMixinsAndOrCoreModOnly.toBoolean()
+        }
     }
-    if (!containsMixinsAndOrCoreModOnly.toBoolean() && (usesMixins.toBoolean() || coreModClass)) {
-        attributes['FMLCorePluginContainsFMLMod'] = true
-    }
+
     if (accessTransformersFile) {
         attributes['FMLAT'] = accessTransformersFile.toString()
     }
 
     if (usesMixins.toBoolean()) {
         attributes['MixinConfigs'] = "mixins.${modId}.json"
-        attributes['ForceLoadAsMod'] = !containsMixinsAndOrCoreModOnly.toBoolean()
     }
     return attributes
 }
