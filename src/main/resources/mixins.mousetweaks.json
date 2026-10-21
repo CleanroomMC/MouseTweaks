@@ -1,0 +1,12 @@
+{
+  "package" : "yalter.mousetweaks.impl.mixin",
+  "refmap" : "mixins.mousetweaks.refmap.json",
+  "target" : "@env(DEFAULT)",
+  "minVersion" : "0.8",
+  "compatibilityLevel" : "JAVA_8",
+  "mixins" : [],
+  "client" : [
+    "AccessGuiContainer"
+  ],
+  "server": []
+}

@@ -14,6 +14,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
+@Deprecated
 public class Reflection {
     private static Obfuscation obfuscation;
     private static boolean checkObfuscation = true;
