@@ -26,5 +26,8 @@ public interface AccessGuiContainer {
     boolean getDragSplitting();
 
     @Accessor
+    void setDragSplitting(boolean value);
+
+    @Accessor
     int getDragSplittingButton();
 }

@@ -70,7 +70,7 @@ public class GuiContainerHandler implements IGuiScreenHandler {
 
         if (access.getDragSplitting()) {
             if (access.getDragSplittingButton() == 1) {
-                access.setIgnoreMouseUp(false);
+                access.setDragSplitting(false);
                 return true;
             }
         }
